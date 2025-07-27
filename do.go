@@ -7,14 +7,13 @@ import (
 	"resty.dev/v3"
 )
 
-// Frame is a basic data structure that contains request or response.
 type Error struct {
 	Code    int    `json:"code"`
 	Message string `json:"message,omitempty"`
 }
 
 type Frame struct {
-	ID int64 `json:"id",omitempty`
+	ID int64 `json:"id,omitempty"`
 
 	// Request
 	Method string          `json:"method,omitempty"`
