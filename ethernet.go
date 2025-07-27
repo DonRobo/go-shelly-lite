@@ -21,7 +21,7 @@ func (r *EthGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *EthGetStatusRequest) DoResty(
+func (r *EthGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*EthStatus,
@@ -29,7 +29,7 @@ func (r *EthGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -67,7 +67,7 @@ func (r *EthGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *EthGetConfigRequest) DoResty(
+func (r *EthGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*EthConfig,
@@ -75,7 +75,7 @@ func (r *EthGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -95,7 +95,7 @@ func (r *EthSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *EthSetConfigRequest) DoResty(
+func (r *EthSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -103,6 +103,6 @@ func (r *EthSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }

@@ -20,7 +20,7 @@ func (r *LightGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *LightGetConfigRequest) DoResty(
+func (r *LightGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*LightConfig,
@@ -28,7 +28,7 @@ func (r *LightGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -53,7 +53,7 @@ func (r *LightSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *LightSetConfigRequest) DoResty(
+func (r *LightSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -61,7 +61,7 @@ func (r *LightSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -83,7 +83,7 @@ func (r *LightGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *LightGetStatusRequest) DoResty(
+func (r *LightGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*LightStatus,
@@ -91,7 +91,7 @@ func (r *LightGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -126,7 +126,7 @@ func (r *LightSetRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *LightSetRequest) DoResty(
+func (r *LightSetRequest) Do(
 	client *resty.Client,
 ) (
 	*LightSetResponse,
@@ -134,7 +134,7 @@ func (r *LightSetRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -159,7 +159,7 @@ func (r *LightToggleRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *LightToggleRequest) DoResty(
+func (r *LightToggleRequest) Do(
 	client *resty.Client,
 ) (
 	*LightToggleResponse,
@@ -167,7 +167,7 @@ func (r *LightToggleRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

@@ -40,7 +40,7 @@ func TestShellyGoLiteWithResty(t *testing.T) {
 	defer client.Close()
 
 	req := &shelly.ShellyGetStatusRequest{}
-	statusResp, _, err := req.DoResty(client)
+	statusResp, _, err := req.Do(client)
 	if err != nil {
 		t.Fatalf("querying device status: %v", err)
 	}

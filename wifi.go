@@ -34,7 +34,7 @@ func (r *WifiGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *WifiGetStatusRequest) DoResty(
+func (r *WifiGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*WifiStatus,
@@ -42,7 +42,7 @@ func (r *WifiGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -136,7 +136,7 @@ func (r *WifiGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *WifiGetConfigRequest) DoResty(
+func (r *WifiGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*WifiConfig,
@@ -144,7 +144,7 @@ func (r *WifiGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -164,7 +164,7 @@ func (r *WifiSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *WifiSetConfigRequest) DoResty(
+func (r *WifiSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -172,6 +172,6 @@ func (r *WifiSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }

@@ -18,7 +18,7 @@ func (r *BLEGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BLEGetStatusRequest) DoResty(
+func (r *BLEGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*BLEStatus,
@@ -26,7 +26,7 @@ func (r *BLEGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -66,7 +66,7 @@ func (r *BLEGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BLEGetConfigRequest) DoResty(
+func (r *BLEGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*BLEConfig,
@@ -74,7 +74,7 @@ func (r *BLEGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -94,7 +94,7 @@ func (r *BLESetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BLESetConfigRequest) DoResty(
+func (r *BLESetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -102,6 +102,6 @@ func (r *BLESetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }

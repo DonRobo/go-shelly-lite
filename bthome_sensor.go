@@ -52,7 +52,7 @@ func (r *BTHomeSensorGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeSensorGetConfigRequest) DoResty(
+func (r *BTHomeSensorGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeSensorConfig,
@@ -60,7 +60,7 @@ func (r *BTHomeSensorGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -85,7 +85,7 @@ func (r *BTHomeSensorSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeSensorSetConfigRequest) DoResty(
+func (r *BTHomeSensorSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -93,7 +93,7 @@ func (r *BTHomeSensorSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -115,7 +115,7 @@ func (r *BTHomeSensorGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeSensorGetStatusRequest) DoResty(
+func (r *BTHomeSensorGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeSensorStatus,
@@ -123,7 +123,7 @@ func (r *BTHomeSensorGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

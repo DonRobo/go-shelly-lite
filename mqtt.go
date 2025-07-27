@@ -23,7 +23,7 @@ func (r *MQTTSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *MQTTSetConfigRequest) DoResty(
+func (r *MQTTSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -31,7 +31,7 @@ func (r *MQTTSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -51,7 +51,7 @@ func (r *MQTTGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *MQTTGetConfigRequest) DoResty(
+func (r *MQTTGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*MQTTConfig,
@@ -59,7 +59,7 @@ func (r *MQTTGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -166,7 +166,7 @@ func (r *MQTTGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *MQTTGetStatusRequest) DoResty(
+func (r *MQTTGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*MQTTStatus,
@@ -174,7 +174,7 @@ func (r *MQTTGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

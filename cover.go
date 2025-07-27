@@ -19,7 +19,7 @@ func (r *CoverGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverGetConfigRequest) DoResty(
+func (r *CoverGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*CoverConfig,
@@ -27,7 +27,7 @@ func (r *CoverGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -51,7 +51,7 @@ func (r *CoverSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverSetConfigRequest) DoResty(
+func (r *CoverSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -59,7 +59,7 @@ func (r *CoverSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -237,7 +237,7 @@ func (r *CoverGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverGetStatusRequest) DoResty(
+func (r *CoverGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*CoverStatus,
@@ -245,7 +245,7 @@ func (r *CoverGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -340,7 +340,7 @@ func (r *CoverCalibrateRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverCalibrateRequest) DoResty(
+func (r *CoverCalibrateRequest) Do(
 	client *resty.Client,
 ) (
 	*CoverCalibrateRespose,
@@ -348,7 +348,7 @@ func (r *CoverCalibrateRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -379,7 +379,7 @@ func (r *CoverOpenRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverOpenRequest) DoResty(
+func (r *CoverOpenRequest) Do(
 	client *resty.Client,
 ) (
 	*CoverOpenResponse,
@@ -387,7 +387,7 @@ func (r *CoverOpenRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -418,7 +418,7 @@ func (r *CoverCloseRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverCloseRequest) DoResty(
+func (r *CoverCloseRequest) Do(
 	client *resty.Client,
 ) (
 	*CoverCloseResponse,
@@ -426,7 +426,7 @@ func (r *CoverCloseRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -451,7 +451,7 @@ func (r *CoverStopRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverStopRequest) DoResty(
+func (r *CoverStopRequest) Do(
 	client *resty.Client,
 ) (
 	*CoverStopResponse,
@@ -459,7 +459,7 @@ func (r *CoverStopRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -495,7 +495,7 @@ func (r *CoverGoToPositionRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverGoToPositionRequest) DoResty(
+func (r *CoverGoToPositionRequest) Do(
 	client *resty.Client,
 ) (
 	*CoverGoToPositionResponse,
@@ -503,7 +503,7 @@ func (r *CoverGoToPositionRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -531,7 +531,7 @@ func (r *CoverResetCountersRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverResetCountersRequest) DoResty(
+func (r *CoverResetCountersRequest) Do(
 	client *resty.Client,
 ) (
 	*CoverResetCountersResponse,
@@ -539,7 +539,7 @@ func (r *CoverResetCountersRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

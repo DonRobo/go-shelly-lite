@@ -20,7 +20,7 @@ func (r *HumidityGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *HumidityGetConfigRequest) DoResty(
+func (r *HumidityGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*HumidityConfig,
@@ -28,7 +28,7 @@ func (r *HumidityGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -53,7 +53,7 @@ func (r *HumiditySetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *HumiditySetConfigRequest) DoResty(
+func (r *HumiditySetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -61,7 +61,7 @@ func (r *HumiditySetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -83,7 +83,7 @@ func (r *HumidityGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *HumidityGetStatusRequest) DoResty(
+func (r *HumidityGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*HumidityStatus,
@@ -91,7 +91,7 @@ func (r *HumidityGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

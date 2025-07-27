@@ -38,7 +38,7 @@ func (r *ScriptGetConfigRequest) Method() string {
 	return "Script.GetConfig"
 }
 
-func (r *ScriptGetConfigRequest) DoResty(
+func (r *ScriptGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*ScriptConfig,
@@ -46,7 +46,7 @@ func (r *ScriptGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -70,7 +70,7 @@ func (r *ScriptSetConfigRequest) Method() string {
 	return "Script.SetConfig"
 }
 
-func (r *ScriptSetConfigRequest) DoResty(
+func (r *ScriptSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -78,7 +78,7 @@ func (r *ScriptSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -99,7 +99,7 @@ func (r *ScriptGetStatusRequest) Method() string {
 	return "Script.GetStatus"
 }
 
-func (r *ScriptGetStatusRequest) DoResty(
+func (r *ScriptGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*ScriptStatus,
@@ -107,7 +107,7 @@ func (r *ScriptGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -132,7 +132,7 @@ func (r *ScriptCreateRequest) Method() string {
 	return "Script.Create"
 }
 
-func (r *ScriptCreateRequest) DoResty(
+func (r *ScriptCreateRequest) Do(
 	client *resty.Client,
 ) (
 	*ScriptCreateResponse,
@@ -140,7 +140,7 @@ func (r *ScriptCreateRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -171,7 +171,7 @@ func (r *ScriptPutCodeRequest) Method() string {
 	return "Script.PutCode"
 }
 
-func (r *ScriptPutCodeRequest) DoResty(
+func (r *ScriptPutCodeRequest) Do(
 	client *resty.Client,
 ) (
 	*ScriptPutCodeResponse,
@@ -179,7 +179,7 @@ func (r *ScriptPutCodeRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -232,7 +232,7 @@ func (r *ScriptEvalRequest) Method() string {
 	return "Script.Eval"
 }
 
-func (r *ScriptEvalRequest) DoResty(
+func (r *ScriptEvalRequest) Do(
 	client *resty.Client,
 ) (
 	*ScriptEvalResponse,
@@ -240,7 +240,7 @@ func (r *ScriptEvalRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -265,7 +265,7 @@ func (r *ScriptStartRequest) Method() string {
 	return "Script.Start"
 }
 
-func (r *ScriptStartRequest) DoResty(
+func (r *ScriptStartRequest) Do(
 	client *resty.Client,
 ) (
 	*ScriptStartResponse,
@@ -273,7 +273,7 @@ func (r *ScriptStartRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -298,7 +298,7 @@ func (r *ScriptStopRequest) Method() string {
 	return "Script.Stop"
 }
 
-func (r *ScriptStopRequest) DoResty(
+func (r *ScriptStopRequest) Do(
 	client *resty.Client,
 ) (
 	*ScriptStopResponse,
@@ -306,7 +306,7 @@ func (r *ScriptStopRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -343,7 +343,7 @@ func (r *ScriptListRequest) Method() string {
 	return "Script.List"
 }
 
-func (r *ScriptListRequest) DoResty(
+func (r *ScriptListRequest) Do(
 	client *resty.Client,
 ) (
 	*ScriptListResponse,
@@ -351,7 +351,7 @@ func (r *ScriptListRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -372,7 +372,7 @@ func (r *ScriptDeleteRequest) Method() string {
 	return "Script.Delete"
 }
 
-func (r *ScriptDeleteRequest) DoResty(
+func (r *ScriptDeleteRequest) Do(
 	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
@@ -380,7 +380,7 @@ func (r *ScriptDeleteRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

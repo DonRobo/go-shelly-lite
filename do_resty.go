@@ -25,7 +25,7 @@ type Frame struct {
 	Error  *Error          `json:"error,omitempty"`
 }
 
-func DoResty(
+func Do(
 	client *resty.Client,
 	req RPCRequestBody,
 	resp any,

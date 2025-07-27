@@ -70,7 +70,7 @@ func (r *BTHomeDeviceGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeviceGetConfigRequest) DoResty(
+func (r *BTHomeDeviceGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeDeviceConfig,
@@ -78,7 +78,7 @@ func (r *BTHomeDeviceGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -103,7 +103,7 @@ func (r *BTHomeDeviceSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeviceSetConfigRequest) DoResty(
+func (r *BTHomeDeviceSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -111,7 +111,7 @@ func (r *BTHomeDeviceSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -133,7 +133,7 @@ func (r *BTHomeDeviceGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeviceGetStatusRequest) DoResty(
+func (r *BTHomeDeviceGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeDeviceStatus,
@@ -141,7 +141,7 @@ func (r *BTHomeDeviceGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -163,7 +163,7 @@ func (r *BTHomeDeviceGetKnownObjectsRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeviceGetKnownObjectsRequest) DoResty(
+func (r *BTHomeDeviceGetKnownObjectsRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeDeviceGetKnownObjectsResponse,
@@ -171,7 +171,7 @@ func (r *BTHomeDeviceGetKnownObjectsRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

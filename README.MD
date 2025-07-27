@@ -5,7 +5,7 @@ go-shelly is an unofficial native go client for the [Shelly Gen2 API](https://sh
 This library is mostly for my own personal amusement and no guarantees or promises about stability, functionality, documentation or test coverage are made.
 
 ## Usage
-In most cases, using the library is as simple building an Resty client and calling .DoResty().  See the [go doc](https://pkg.go.dev/github.com/DonRobo/go-shelly-lite), the [Resty doc](https://resty.dev/) and [Shelly Gen2 API documentation](https://shelly-api-docs.shelly.cloud/gen2/).
+In most cases, using the library is as simple building an Resty client and calling .Do().  See the [go doc](https://pkg.go.dev/github.com/DonRobo/go-shelly-lite), the [Resty doc](https://resty.dev/) and [Shelly Gen2 API documentation](https://shelly-api-docs.shelly.cloud/gen2/).
 ```
 import (
 	"context"
@@ -25,7 +25,7 @@ func main() {
 	defer client.Close()
 
 	req := &shelly.ShellyGetStatusRequest{}
-	statusResp, _, err := req.DoResty(client)
+	statusResp, _, err := req.Do(client)
 
     if err != nil {
         log.Fatalf("querying device status: %v", err)

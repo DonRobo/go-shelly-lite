@@ -62,7 +62,7 @@ func (r *ScheduleCreateRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ScheduleCreateRequest) DoResty(
+func (r *ScheduleCreateRequest) Do(
 	client *resty.Client,
 ) (
 	*ScheduleCreateResponse,
@@ -70,7 +70,7 @@ func (r *ScheduleCreateRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -105,7 +105,7 @@ func (r *ScheduleUpdateRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ScheduleUpdateRequest) DoResty(
+func (r *ScheduleUpdateRequest) Do(
 	client *resty.Client,
 ) (
 	*ScheduleUpdateResponse,
@@ -113,7 +113,7 @@ func (r *ScheduleUpdateRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -135,7 +135,7 @@ func (r *ScheduleDeleteRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ScheduleDeleteRequest) DoResty(
+func (r *ScheduleDeleteRequest) Do(
 	client *resty.Client,
 ) (
 	*ScheduleUpdateResponse,
@@ -143,7 +143,7 @@ func (r *ScheduleDeleteRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -162,7 +162,7 @@ func (r *ScheduleDeleteAllRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ScheduleDeleteAllRequest) DoResty(
+func (r *ScheduleDeleteAllRequest) Do(
 	client *resty.Client,
 ) (
 	*ScheduleUpdateResponse,
@@ -170,6 +170,6 @@ func (r *ScheduleDeleteAllRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }

@@ -20,7 +20,7 @@ func (r *TemperatureGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *TemperatureGetConfigRequest) DoResty(
+func (r *TemperatureGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*TemperatureConfig,
@@ -28,7 +28,7 @@ func (r *TemperatureGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -53,7 +53,7 @@ func (r *TemperatureSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *TemperatureSetConfigRequest) DoResty(
+func (r *TemperatureSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -61,7 +61,7 @@ func (r *TemperatureSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -83,7 +83,7 @@ func (r *TemperatureGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *TemperatureGetStatusRequest) DoResty(
+func (r *TemperatureGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*TemperatureStatus,
@@ -91,7 +91,7 @@ func (r *TemperatureGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

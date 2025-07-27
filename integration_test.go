@@ -17,7 +17,7 @@ func GetCallWithVerify(t *testing.T, req shelly.RPCRequestBody, respBody interfa
 	client.SetBaseURL("http://192.168.1.169")
 	defer client.Close()
 
-	respFrame, err := shelly.DoResty(client, req, respBody)
+	respFrame, err := shelly.Do(client, req, respBody)
 	require.NoError(t, err)
 	fmt.Println(string(respFrame.Result))
 

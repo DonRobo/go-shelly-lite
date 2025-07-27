@@ -48,7 +48,7 @@ func (r *DevicePowerGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *DevicePowerGetStatusRequest) DoResty(
+func (r *DevicePowerGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*DevicePowerStatus,
@@ -56,6 +56,6 @@ func (r *DevicePowerGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }

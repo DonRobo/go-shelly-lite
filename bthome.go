@@ -26,7 +26,7 @@ func (r *BTHomeAddDeviceRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeAddDeviceRequest) DoResty(
+func (r *BTHomeAddDeviceRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeAddDeviceResponse,
@@ -34,7 +34,7 @@ func (r *BTHomeAddDeviceRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -61,7 +61,7 @@ func (r *BTHomeDeleteDeviceRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeleteDeviceRequest) DoResty(
+func (r *BTHomeDeleteDeviceRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeDeleteDeviceResponse,
@@ -69,7 +69,7 @@ func (r *BTHomeDeleteDeviceRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -97,7 +97,7 @@ func (r *BTHomeAddSensorRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeAddSensorRequest) DoResty(
+func (r *BTHomeAddSensorRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeAddSensorResponse,
@@ -105,7 +105,7 @@ func (r *BTHomeAddSensorRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -132,7 +132,7 @@ func (r *BTHomeDeleteSensorRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeleteSensorRequest) DoResty(
+func (r *BTHomeDeleteSensorRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeDeleteSensorResponse,
@@ -140,7 +140,7 @@ func (r *BTHomeDeleteSensorRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -164,7 +164,7 @@ func (r *BTHomeStartDeviceDiscoveryRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeStartDeviceDiscoveryRequest) DoResty(
+func (r *BTHomeStartDeviceDiscoveryRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeStartDeviceDiscoveryResponse,
@@ -172,7 +172,7 @@ func (r *BTHomeStartDeviceDiscoveryRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -196,7 +196,7 @@ func (r *BTHomeGetObjectInfosRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeGetObjectInfosRequest) DoResty(
+func (r *BTHomeGetObjectInfosRequest) Do(
 	client *resty.Client,
 ) (
 	*BTHomeGetObjectInfosResponse,
@@ -204,7 +204,7 @@ func (r *BTHomeGetObjectInfosRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

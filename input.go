@@ -24,7 +24,7 @@ func (r *InputGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *InputGetStatusRequest) DoResty(
+func (r *InputGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*InputStatus,
@@ -32,7 +32,7 @@ func (r *InputGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -75,7 +75,7 @@ func (r *InputGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *InputGetConfigRequest) DoResty(
+func (r *InputGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*InputConfig,
@@ -83,7 +83,7 @@ func (r *InputGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -157,7 +157,7 @@ func (r *InputSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *InputSetConfigRequest) DoResty(
+func (r *InputSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -165,7 +165,7 @@ func (r *InputSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -189,7 +189,7 @@ func (r *InputCheckExpressionRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *InputCheckExpressionRequest) DoResty(
+func (r *InputCheckExpressionRequest) Do(
 	client *resty.Client,
 ) (
 	*InputCheckExpressionResponse,
@@ -197,7 +197,7 @@ func (r *InputCheckExpressionRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

@@ -27,7 +27,7 @@ func (r *ShellyGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyGetStatusRequest) DoResty(
+func (r *ShellyGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*ShellyGetStatusResponse,
@@ -35,7 +35,7 @@ func (r *ShellyGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -232,7 +232,7 @@ func (r *ShellyGetDeviceInfoRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyGetDeviceInfoRequest) DoResty(
+func (r *ShellyGetDeviceInfoRequest) Do(
 	client *resty.Client,
 ) (
 	*ShellyGetDeviceInfoResponse,
@@ -240,7 +240,7 @@ func (r *ShellyGetDeviceInfoRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -303,7 +303,7 @@ func (r *ShellyCheckForUpdateRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyCheckForUpdateRequest) DoResty(
+func (r *ShellyCheckForUpdateRequest) Do(
 	client *resty.Client,
 ) (
 	*ShellyCheckForUpdateResponse,
@@ -311,7 +311,7 @@ func (r *ShellyCheckForUpdateRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -366,7 +366,7 @@ func (r *ShellyFactoryResetRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyFactoryResetRequest) DoResty(
+func (r *ShellyFactoryResetRequest) Do(
 	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
@@ -374,7 +374,7 @@ func (r *ShellyFactoryResetRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -392,7 +392,7 @@ func (r *ShellyResetWiFiConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyResetWiFiConfigRequest) DoResty(
+func (r *ShellyResetWiFiConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
@@ -400,7 +400,7 @@ func (r *ShellyResetWiFiConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -422,7 +422,7 @@ func (r *ShellyRebootRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyRebootRequest) DoResty(
+func (r *ShellyRebootRequest) Do(
 	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
@@ -430,7 +430,7 @@ func (r *ShellyRebootRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -457,7 +457,7 @@ func (r *ShellySetAuthRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellySetAuthRequest) DoResty(
+func (r *ShellySetAuthRequest) Do(
 	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
@@ -465,7 +465,7 @@ func (r *ShellySetAuthRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -518,7 +518,7 @@ func (r *ShellyPutUserCARequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyPutUserCARequest) DoResty(
+func (r *ShellyPutUserCARequest) Do(
 	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
@@ -526,7 +526,7 @@ func (r *ShellyPutUserCARequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -574,7 +574,7 @@ func (r *ShellyPutTLSClientCertRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyPutTLSClientCertRequest) DoResty(
+func (r *ShellyPutTLSClientCertRequest) Do(
 	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
@@ -582,7 +582,7 @@ func (r *ShellyPutTLSClientCertRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -630,7 +630,7 @@ func (r *ShellyPutTLSClientKeyRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyPutTLSClientKeyRequest) DoResty(
+func (r *ShellyPutTLSClientKeyRequest) Do(
 	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
@@ -638,7 +638,7 @@ func (r *ShellyPutTLSClientKeyRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -845,7 +845,7 @@ func (r *ShellyGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyGetConfigRequest) DoResty(
+func (r *ShellyGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*ShellyGetConfigResponse,
@@ -853,7 +853,7 @@ func (r *ShellyGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -876,7 +876,7 @@ func (r *ShellyListMethodsRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyListMethodsRequest) DoResty(
+func (r *ShellyListMethodsRequest) Do(
 	client *resty.Client,
 ) (
 	*ShellyListMethodsResponse,
@@ -884,7 +884,7 @@ func (r *ShellyListMethodsRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -914,7 +914,7 @@ func (r *ShellyListProfilesRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyListProfilesRequest) DoResty(
+func (r *ShellyListProfilesRequest) Do(
 	client *resty.Client,
 ) (
 	*ShellyListProfilesResponse,
@@ -922,7 +922,7 @@ func (r *ShellyListProfilesRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -949,7 +949,7 @@ func (r *ShellySetProfileRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellySetProfileRequest) DoResty(
+func (r *ShellySetProfileRequest) Do(
 	client *resty.Client,
 ) (
 	*ShellySetProfileResponse,
@@ -957,7 +957,7 @@ func (r *ShellySetProfileRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -980,7 +980,7 @@ func (r *ShellyListTimezonesRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyListTimezonesRequest) DoResty(
+func (r *ShellyListTimezonesRequest) Do(
 	client *resty.Client,
 ) (
 	*ShellyListTimezonesResponse,
@@ -988,7 +988,7 @@ func (r *ShellyListTimezonesRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -1017,7 +1017,7 @@ func (r *ShellyDetectLocationRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyDetectLocationRequest) DoResty(
+func (r *ShellyDetectLocationRequest) Do(
 	client *resty.Client,
 ) (
 	*ShellyDetectLocationResponse,
@@ -1025,7 +1025,7 @@ func (r *ShellyDetectLocationRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -1081,7 +1081,7 @@ func (r *ShellyGetComponentsRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyGetComponentsRequest) DoResty(
+func (r *ShellyGetComponentsRequest) Do(
 	client *resty.Client,
 ) (
 	*ShellyGetComponentsResponse,
@@ -1089,7 +1089,7 @@ func (r *ShellyGetComponentsRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -1106,7 +1106,7 @@ func (r *ShellyGetComponentsRequest) DoResty(
 // 	composed := r.NewTypedResponse()
 // 	for have := 0; have < total; {
 // 		resp := r.NewTypedResponse()
-// 		_, err := DoResty(client, r, resp)
+// 		_, err := Do(client, r, resp)
 // 		if err != nil {
 // 			return nil, err
 // 		}

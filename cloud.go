@@ -18,7 +18,7 @@ func (r *CloudSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CloudSetConfigRequest) DoResty(
+func (r *CloudSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -26,7 +26,7 @@ func (r *CloudSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -52,7 +52,7 @@ func (r *CloudGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CloudGetConfigRequest) DoResty(
+func (r *CloudGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
@@ -60,7 +60,7 @@ func (r *CloudGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -82,7 +82,7 @@ func (r *CloudGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CloudGetStatusRequest) DoResty(
+func (r *CloudGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
@@ -90,6 +90,6 @@ func (r *CloudGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }

@@ -11,7 +11,7 @@ func (r *SwitchGetConfigRequest) Method() string {
 	return "Switch.GetConfig"
 }
 
-func (r *SwitchGetConfigRequest) DoResty(
+func (r *SwitchGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SwitchConfig,
@@ -19,7 +19,7 @@ func (r *SwitchGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -43,7 +43,7 @@ func (r *SwitchSetConfigRequest) Method() string {
 	return "Switch.SetConfig"
 }
 
-func (r *SwitchSetConfigRequest) DoResty(
+func (r *SwitchSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -51,7 +51,7 @@ func (r *SwitchSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -72,7 +72,7 @@ func (r *SwitchGetStatusRequest) Method() string {
 	return "Switch.GetStatus"
 }
 
-func (r *SwitchGetStatusRequest) DoResty(
+func (r *SwitchGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*SwitchStatus,
@@ -80,7 +80,7 @@ func (r *SwitchGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -107,7 +107,7 @@ func (r *SwitchSetRequest) Method() string {
 	return "Switch.Set"
 }
 
-func (r *SwitchSetRequest) DoResty(
+func (r *SwitchSetRequest) Do(
 	client *resty.Client,
 ) (
 	*SwitchActionResponse,
@@ -115,7 +115,7 @@ func (r *SwitchSetRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -136,7 +136,7 @@ func (r *SwitchToggleRequest) Method() string {
 	return "Switch.Toggle"
 }
 
-func (r *SwitchToggleRequest) DoResty(
+func (r *SwitchToggleRequest) Do(
 	client *resty.Client,
 ) (
 	*SwitchActionResponse,
@@ -144,7 +144,7 @@ func (r *SwitchToggleRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 

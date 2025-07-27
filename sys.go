@@ -12,7 +12,7 @@ func (r *SysGetConfigRequest) Method() string {
 	return "Sys.GetConfig"
 }
 
-func (r *SysGetConfigRequest) DoResty(
+func (r *SysGetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SysConfig,
@@ -20,7 +20,7 @@ func (r *SysGetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -41,7 +41,7 @@ func (r *SysSetConfigRequest) Method() string {
 	return "Sys.SetConfig"
 }
 
-func (r *SysSetConfigRequest) DoResty(
+func (r *SysSetConfigRequest) Do(
 	client *resty.Client,
 ) (
 	*SetConfigResponse,
@@ -49,7 +49,7 @@ func (r *SysSetConfigRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
@@ -67,7 +67,7 @@ func (r *SysGetStatusRequest) Method() string {
 	return "Sys.GetStatus"
 }
 
-func (r *SysGetStatusRequest) DoResty(
+func (r *SysGetStatusRequest) Do(
 	client *resty.Client,
 ) (
 	*SysStatus,
@@ -75,7 +75,7 @@ func (r *SysGetStatusRequest) DoResty(
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := DoResty(client, r, resp)
+	raw, err := Do(client, r, resp)
 	return resp, raw, err
 }
 
