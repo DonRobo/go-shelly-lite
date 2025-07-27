@@ -1,6 +1,8 @@
 # go-shelly-lite
 go-shelly is an unofficial native go client for the [Shelly Gen2 API](https://shelly-api-docs.shelly.cloud/gen2/). It's forked from jcodybaker's excellent [go-shelly](https://github.com/jcodybaker/go-shelly) library. However with the dependency to [mos](github.com/mongoose-os/mos/) completely removed. As many of its transitive dependencies were causing issues for me.
 
+Because of this change, this is not quite a drop in replacement, but it should be simple enough to make the required modifications.
+
 ## Maturity
 This library is mostly for my own personal amusement and no guarantees or promises about stability, functionality, documentation or test coverage are made.
 
