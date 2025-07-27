@@ -38,6 +38,9 @@ func main() {
 
 ## Legal
 
+### Liability
+By downloading/using this open-source library you indemnify the authors of this project from liability to the fullest extent permitted by law. There are real risks of fire, electricution, and/or bodily injury/death with these devices and connected equipment. Errors, bugs, or misinformation may exist in this software which cause your device and attached equipment to function in unexpected and dangerous ways. That risk is your responsibility. 
+
 ### License
 This fork contains modifications by [DonRobo](https://github.com/DonRobo), based on the original work by J Cody Baker.  
 Original copyright [J Cody Baker](cody@codybaker.com)  
