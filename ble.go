@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 type BLEStatus struct{}
 
@@ -23,17 +18,15 @@ func (r *BLEGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BLEGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BLEGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BLEStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -73,17 +66,15 @@ func (r *BLEGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BLEGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BLEGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BLEConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -103,16 +94,14 @@ func (r *BLESetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BLESetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BLESetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }

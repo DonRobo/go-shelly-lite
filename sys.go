@@ -1,11 +1,9 @@
 package shelly
 
 import (
-	"context"
 	"encoding/json"
 
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
+	"resty.dev/v3"
 )
 
 type SysGetConfigRequest struct{}
@@ -14,17 +12,15 @@ func (r *SysGetConfigRequest) Method() string {
 	return "Sys.GetConfig"
 }
 
-func (r *SysGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *SysGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SysConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -45,17 +41,15 @@ func (r *SysSetConfigRequest) Method() string {
 	return "Sys.SetConfig"
 }
 
-func (r *SysSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *SysSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -73,17 +67,15 @@ func (r *SysGetStatusRequest) Method() string {
 	return "Sys.GetStatus"
 }
 
-func (r *SysGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *SysGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SysStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

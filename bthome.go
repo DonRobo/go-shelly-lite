@@ -1,10 +1,7 @@
 package shelly
 
 import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
+	"resty.dev/v3"
 )
 
 // BTHomeAddDeviceRequest contains parameters for the BTHome.GetConfig RPC request.
@@ -29,17 +26,15 @@ func (r *BTHomeAddDeviceRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeAddDeviceRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeAddDeviceRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeAddDeviceResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -66,17 +61,15 @@ func (r *BTHomeDeleteDeviceRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeleteDeviceRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeDeleteDeviceRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeDeleteDeviceResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -104,17 +97,15 @@ func (r *BTHomeAddSensorRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeAddSensorRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeAddSensorRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeAddSensorResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -141,17 +132,15 @@ func (r *BTHomeDeleteSensorRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeleteSensorRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeDeleteSensorRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeDeleteSensorResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -175,17 +164,15 @@ func (r *BTHomeStartDeviceDiscoveryRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeStartDeviceDiscoveryRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeStartDeviceDiscoveryRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeStartDeviceDiscoveryResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -209,17 +196,15 @@ func (r *BTHomeGetObjectInfosRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeGetObjectInfosRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeGetObjectInfosRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeGetObjectInfosResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

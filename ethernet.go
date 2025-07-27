@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 type EthStatus struct {
 	// IP of the device in the network.
@@ -26,17 +21,15 @@ func (r *EthGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *EthGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *EthGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*EthStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -74,17 +67,15 @@ func (r *EthGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *EthGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *EthGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*EthConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -104,16 +95,14 @@ func (r *EthSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *EthSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *EthSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }

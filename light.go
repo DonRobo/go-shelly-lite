@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 // LightGetConfigRequest contains parameters for the Light.GetConfig RPC request.
 type LightGetConfigRequest struct {
@@ -25,17 +20,15 @@ func (r *LightGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *LightGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *LightGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*LightConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -60,17 +53,15 @@ func (r *LightSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *LightSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *LightSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -92,17 +83,15 @@ func (r *LightGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *LightGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *LightGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*LightStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -137,17 +126,15 @@ func (r *LightSetRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *LightSetRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *LightSetRequest) DoResty(
+	client *resty.Client,
 ) (
 	*LightSetResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -172,17 +159,15 @@ func (r *LightToggleRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *LightToggleRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *LightToggleRequest) DoResty(
+	client *resty.Client,
 ) (
 	*LightToggleResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

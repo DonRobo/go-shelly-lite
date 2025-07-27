@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 type CloudSetConfigRequest struct {
 	Config CloudConfig `json:"config"`
@@ -23,17 +18,15 @@ func (r *CloudSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CloudSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CloudSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -59,17 +52,15 @@ func (r *CloudGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CloudGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CloudGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -91,16 +82,14 @@ func (r *CloudGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CloudGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CloudGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }

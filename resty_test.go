@@ -3,6 +3,8 @@ package shelly_test
 import (
 	"testing"
 
+	shelly "github.com/DonRobo/go-shelly-lite"
+
 	"resty.dev/v3"
 )
 
@@ -29,4 +31,18 @@ func TestRestyRpc(t *testing.T) {
 
 	t.Logf("Status: %s", res.Status())
 	t.Logf("Body: %s", res.String())
+}
+
+func TestShellyGoLiteWithResty(t *testing.T) {
+	shellyIp := "http://192.168.1.169"
+	client := resty.New()
+	client.SetBaseURL(shellyIp)
+	defer client.Close()
+
+	req := &shelly.ShellyGetStatusRequest{}
+	statusResp, _, err := req.DoResty(client)
+	if err != nil {
+		t.Fatalf("querying device status: %v", err)
+	}
+	t.Logf("Device status: %+v", statusResp)
 }

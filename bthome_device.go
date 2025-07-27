@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 type BTHomeDeviceConfig struct {
 	// ID of the component instance.
@@ -75,17 +70,15 @@ func (r *BTHomeDeviceGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeviceGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeDeviceGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeDeviceConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -110,17 +103,15 @@ func (r *BTHomeDeviceSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeviceSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeDeviceSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -142,17 +133,15 @@ func (r *BTHomeDeviceGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeviceGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeDeviceGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeDeviceStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -174,17 +163,15 @@ func (r *BTHomeDeviceGetKnownObjectsRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeDeviceGetKnownObjectsRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeDeviceGetKnownObjectsRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeDeviceGetKnownObjectsResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 type WifiStatus struct {
 	// StaIP is the IP of the device in the network (null if disconnected).
@@ -39,17 +34,15 @@ func (r *WifiGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *WifiGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *WifiGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*WifiStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -143,17 +136,15 @@ func (r *WifiGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *WifiGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *WifiGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*WifiConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -173,16 +164,14 @@ func (r *WifiSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *WifiSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *WifiSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }

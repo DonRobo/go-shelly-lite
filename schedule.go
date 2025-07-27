@@ -1,11 +1,9 @@
 package shelly
 
 import (
-	"context"
 	"encoding/json"
 
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
+	"resty.dev/v3"
 )
 
 // Schedule describes a series of RPCs to be repeated on a schedule.
@@ -64,17 +62,15 @@ func (r *ScheduleCreateRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ScheduleCreateRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScheduleCreateRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScheduleCreateResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -109,17 +105,15 @@ func (r *ScheduleUpdateRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ScheduleUpdateRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScheduleUpdateRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScheduleUpdateResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -141,17 +135,15 @@ func (r *ScheduleDeleteRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ScheduleDeleteRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScheduleDeleteRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScheduleUpdateResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -170,16 +162,14 @@ func (r *ScheduleDeleteAllRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ScheduleDeleteAllRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScheduleDeleteAllRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScheduleUpdateResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }

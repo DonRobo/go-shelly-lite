@@ -1,13 +1,7 @@
 package shelly
 
 import (
-	"bufio"
-	"context"
-	"fmt"
-	"io"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
+	"resty.dev/v3"
 )
 
 type ScriptConfig struct {
@@ -44,17 +38,15 @@ func (r *ScriptGetConfigRequest) Method() string {
 	return "Script.GetConfig"
 }
 
-func (r *ScriptGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScriptGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScriptConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -78,17 +70,15 @@ func (r *ScriptSetConfigRequest) Method() string {
 	return "Script.SetConfig"
 }
 
-func (r *ScriptSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScriptSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -109,17 +99,15 @@ func (r *ScriptGetStatusRequest) Method() string {
 	return "Script.GetStatus"
 }
 
-func (r *ScriptGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScriptGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScriptStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -144,17 +132,15 @@ func (r *ScriptCreateRequest) Method() string {
 	return "Script.Create"
 }
 
-func (r *ScriptCreateRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScriptCreateRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScriptCreateResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -185,17 +171,15 @@ func (r *ScriptPutCodeRequest) Method() string {
 	return "Script.PutCode"
 }
 
-func (r *ScriptPutCodeRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScriptPutCodeRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScriptPutCodeResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -207,28 +191,29 @@ func (r *ScriptPutCodeRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
+//TODO Not supported yet
 // ScriptPutCode is a helper method which uploads the provided code to the
 // Script.PutCode method, line-by-line to accomodate limits on payload size.
-func ScriptPutCode(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
-	data io.Reader,
-) error {
-	s := bufio.NewScanner(data)
-	req := &ScriptPutCodeRequest{}
-	for s.Scan() {
-		req.Code = s.Text() + "\n"
-		if _, _, err := req.Do(ctx, c, credsCallback); err != nil {
-			return err
-		}
-		req.Append = true
-	}
-	if err := s.Err(); err != nil {
-		return fmt.Errorf("reading input data for Script.PutCode: %w", err)
-	}
-	return nil
-}
+// func ScriptPutCode(
+// 	ctx context.Context,
+// 	c mgrpc.MgRPC,
+// 	credsCallback mgrpc.GetCredsCallback,
+// 	data io.Reader,
+// ) error {
+// 	s := bufio.NewScanner(data)
+// 	req := &ScriptPutCodeRequest{}
+// 	for s.Scan() {
+// 		req.Code = s.Text() + "\n"
+// 		if _, _, err := req.Do(ctx, c, credsCallback); err != nil {
+// 			return err
+// 		}
+// 		req.Append = true
+// 	}
+// 	if err := s.Err(); err != nil {
+// 		return fmt.Errorf("reading input data for Script.PutCode: %w", err)
+// 	}
+// 	return nil
+// }
 
 type ScriptEvalResponse struct {
 	Result string `json:"result"`
@@ -247,17 +232,15 @@ func (r *ScriptEvalRequest) Method() string {
 	return "Script.Eval"
 }
 
-func (r *ScriptEvalRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScriptEvalRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScriptEvalResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -282,17 +265,15 @@ func (r *ScriptStartRequest) Method() string {
 	return "Script.Start"
 }
 
-func (r *ScriptStartRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScriptStartRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScriptStartResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -317,17 +298,15 @@ func (r *ScriptStopRequest) Method() string {
 	return "Script.Stop"
 }
 
-func (r *ScriptStopRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScriptStopRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScriptStopResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -364,17 +343,15 @@ func (r *ScriptListRequest) Method() string {
 	return "Script.List"
 }
 
-func (r *ScriptListRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScriptListRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ScriptListResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -395,17 +372,15 @@ func (r *ScriptDeleteRequest) Method() string {
 	return "Script.Delete"
 }
 
-func (r *ScriptDeleteRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ScriptDeleteRequest) DoResty(
+	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

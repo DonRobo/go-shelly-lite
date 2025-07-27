@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 // TemperatureGetConfigRequest contains parameters for the Temperature.GetConfig RPC request.
 type TemperatureGetConfigRequest struct {
@@ -25,17 +20,15 @@ func (r *TemperatureGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *TemperatureGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *TemperatureGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*TemperatureConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -60,17 +53,15 @@ func (r *TemperatureSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *TemperatureSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *TemperatureSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -92,17 +83,15 @@ func (r *TemperatureGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *TemperatureGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *TemperatureGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*TemperatureStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

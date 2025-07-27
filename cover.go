@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 type CoverGetConfigRequest struct {
 	// ID of the cover component instance.
@@ -24,17 +19,15 @@ func (r *CoverGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CoverGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*CoverConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -58,17 +51,15 @@ func (r *CoverSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CoverSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -246,17 +237,15 @@ func (r *CoverGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CoverGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*CoverStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -351,17 +340,15 @@ func (r *CoverCalibrateRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverCalibrateRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CoverCalibrateRequest) DoResty(
+	client *resty.Client,
 ) (
 	*CoverCalibrateRespose,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -392,17 +379,15 @@ func (r *CoverOpenRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverOpenRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CoverOpenRequest) DoResty(
+	client *resty.Client,
 ) (
 	*CoverOpenResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -433,17 +418,15 @@ func (r *CoverCloseRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverCloseRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CoverCloseRequest) DoResty(
+	client *resty.Client,
 ) (
 	*CoverCloseResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -468,17 +451,15 @@ func (r *CoverStopRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverStopRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CoverStopRequest) DoResty(
+	client *resty.Client,
 ) (
 	*CoverStopResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -514,17 +495,15 @@ func (r *CoverGoToPositionRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverGoToPositionRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CoverGoToPositionRequest) DoResty(
+	client *resty.Client,
 ) (
 	*CoverGoToPositionResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -552,17 +531,15 @@ func (r *CoverResetCountersRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *CoverResetCountersRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *CoverResetCountersRequest) DoResty(
+	client *resty.Client,
 ) (
 	*CoverResetCountersResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

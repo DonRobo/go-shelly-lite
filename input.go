@@ -1,12 +1,10 @@
 package shelly
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
+	"resty.dev/v3"
 )
 
 type InputGetStatusRequest struct {
@@ -26,17 +24,15 @@ func (r *InputGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *InputGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *InputGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*InputStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -79,17 +75,15 @@ func (r *InputGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *InputGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *InputGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*InputConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -163,17 +157,15 @@ func (r *InputSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *InputSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *InputSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -197,17 +189,15 @@ func (r *InputCheckExpressionRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *InputCheckExpressionRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *InputCheckExpressionRequest) DoResty(
+	client *resty.Client,
 ) (
 	*InputCheckExpressionResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

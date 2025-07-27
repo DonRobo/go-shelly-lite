@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 type SwitchGetConfigRequest struct {
 	// ID of the switch component instance.
@@ -16,17 +11,15 @@ func (r *SwitchGetConfigRequest) Method() string {
 	return "Switch.GetConfig"
 }
 
-func (r *SwitchGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *SwitchGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SwitchConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -50,17 +43,15 @@ func (r *SwitchSetConfigRequest) Method() string {
 	return "Switch.SetConfig"
 }
 
-func (r *SwitchSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *SwitchSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -81,17 +72,15 @@ func (r *SwitchGetStatusRequest) Method() string {
 	return "Switch.GetStatus"
 }
 
-func (r *SwitchGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *SwitchGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SwitchStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -118,17 +107,15 @@ func (r *SwitchSetRequest) Method() string {
 	return "Switch.Set"
 }
 
-func (r *SwitchSetRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *SwitchSetRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SwitchActionResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
-	resp := &SwitchActionResponse{}
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	resp := r.NewTypedResponse()
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -149,17 +136,15 @@ func (r *SwitchToggleRequest) Method() string {
 	return "Switch.Toggle"
 }
 
-func (r *SwitchToggleRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *SwitchToggleRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SwitchActionResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
-	resp := &SwitchActionResponse{}
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	resp := r.NewTypedResponse()
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

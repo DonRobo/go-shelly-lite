@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 // HumidityGetConfigRequest contains parameters for the Humidity.GetConfig RPC request.
 type HumidityGetConfigRequest struct {
@@ -25,17 +20,15 @@ func (r *HumidityGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *HumidityGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *HumidityGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*HumidityConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -60,17 +53,15 @@ func (r *HumiditySetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *HumiditySetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *HumiditySetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -92,17 +83,15 @@ func (r *HumidityGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *HumidityGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *HumidityGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*HumidityStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

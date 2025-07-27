@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 type DevicePowerStatus struct {
 	// ID of the devicepower component instance.
@@ -53,16 +48,14 @@ func (r *DevicePowerGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *DevicePowerGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *DevicePowerGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*DevicePowerStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }

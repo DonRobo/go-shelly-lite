@@ -1,11 +1,6 @@
 package shelly
 
-import (
-	"context"
-
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
-)
+import "resty.dev/v3"
 
 type BTHomeSensorConfig struct {
 	// ID of the component instance.
@@ -57,17 +52,15 @@ func (r *BTHomeSensorGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeSensorGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeSensorGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeSensorConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -92,17 +85,15 @@ func (r *BTHomeSensorSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeSensorSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeSensorSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -124,17 +115,15 @@ func (r *BTHomeSensorGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *BTHomeSensorGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *BTHomeSensorGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*BTHomeSensorStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 

@@ -1,25 +1,26 @@
 # go-shelly
+*TODO: Adapt the readme*
 go-shelly is an unofficial native go client for the [Shelly Gen2 API](https://shelly-api-docs.shelly.cloud/gen2/). It compliments the [MongooseOS mgrpc library](https://pkg.go.dev/github.com/mongoose-os/mos/common/mgrpc).
 
 ## Maturity
 This library is currently in active development (as of December 2024). It has meaningful gaps in testing and functionality. At this stage there is no guarantee of backwards compatibility. Once the project reaches a stable state, I will begin crafting releases with semantic versioning. 
 
 ## Usage
-In most cases, using the library is as simple building an RPC channel and calling .Do().  See the [go doc](https://pkg.go.dev/github.com/jcodybaker/go-shelly) and [Shelly Gen2 API documentation](https://shelly-api-docs.shelly.cloud/gen2/).
+In most cases, using the library is as simple building an RPC channel and calling .Do().  See the [go doc](https://pkg.go.dev/github.com/DonRobo/go-shelly-lite) and [Shelly Gen2 API documentation](https://shelly-api-docs.shelly.cloud/gen2/).
 ```
 import (
 	"context"
 	"fmt"
     "log"
 
-	shelly "github.com/jcodybaker/go-shelly"
-	"github.com/mongoose-os/mos/common/mgrpc"
+	shelly "github.com/DonRobo/go-shelly-lite"
 )
 
 const (
     rpcAddr = "http://192.168.1.20/rpc"
 )
 
+//TODO adapt this
 func main() {
     ctx := context.Background()
 	c, err := mgrpc.New(ctx, rpcAddr, mgrpc.UseHTTPPost())
@@ -52,7 +53,7 @@ func main() {
 * CI testing / dependabot / release pipeline.
 
 ## Contributing
-Pull-requests and [issues](https://github.com/jcodybaker/go-shelly/issues) are welcome. Code should be formatted with gofmt, pass existing tests, and ideally add new testing. Test should include samples from live device request/response flows when possible.
+Pull-requests and [issues](https://github.com/DonRobo/go-shelly-lite/issues) are welcome. Code should be formatted with gofmt, pass existing tests, and ideally add new testing. Test should include samples from live device request/response flows when possible.
 
 ## Legal
 

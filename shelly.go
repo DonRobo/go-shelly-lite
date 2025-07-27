@@ -1,15 +1,11 @@
 package shelly
 
 import (
-	"bufio"
-	"context"
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
-	"io"
 
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
+	"resty.dev/v3"
 )
 
 const (
@@ -31,17 +27,15 @@ func (r *ShellyGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ShellyGetStatusResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -238,17 +232,15 @@ func (r *ShellyGetDeviceInfoRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyGetDeviceInfoRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyGetDeviceInfoRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ShellyGetDeviceInfoResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -311,17 +303,15 @@ func (r *ShellyCheckForUpdateRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyCheckForUpdateRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyCheckForUpdateRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ShellyCheckForUpdateResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -376,17 +366,15 @@ func (r *ShellyFactoryResetRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyFactoryResetRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyFactoryResetRequest) DoResty(
+	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -404,17 +392,15 @@ func (r *ShellyResetWiFiConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyResetWiFiConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyResetWiFiConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -436,17 +422,15 @@ func (r *ShellyRebootRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyRebootRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyRebootRequest) DoResty(
+	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -473,17 +457,15 @@ func (r *ShellySetAuthRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellySetAuthRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellySetAuthRequest) DoResty(
+	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -501,19 +483,20 @@ func NewShellySetAuthRequest(deviceID, password string) *ShellySetAuthRequest {
 	return out
 }
 
+//TODO Not supported yet
 // BuildShellyAuthRequest builds the request, fetching the deviceID for realm.
-func BuildShellyAuthRequest(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	password string,
-) (*ShellySetAuthRequest, error) {
-	resp, _, err := (&ShellyGetDeviceInfoRequest{}).Do(ctx, c, nil)
-	if err != nil {
-		return nil, err
-	}
-	deviceID := resp.ID
-	return NewShellySetAuthRequest(deviceID, password), nil
-}
+// func BuildShellyAuthRequest(
+// 	ctx context.Context,
+// 	c mgrpc.MgRPC,
+// 	password string,
+// ) (*ShellySetAuthRequest, error) {
+// 	resp, _, err := (&ShellyGetDeviceInfoRequest{}).Do(ctx, c, nil)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	deviceID := resp.ID
+// 	return NewShellySetAuthRequest(deviceID, password), nil
+// }
 
 type ShellyPutUserCARequest struct {
 	// Contents of the PEM file (null if you want to delete the existing data). (Required)
@@ -535,42 +518,41 @@ func (r *ShellyPutUserCARequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyPutUserCARequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyPutUserCARequest) DoResty(
+	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
+//TODO Not supported yet
 // ShellyPutUserCA is a helper method which uploads the provided data to the Shelly.PutUserCA method,
 // line-by-line to accomodate limits on payload size.
-func ShellyPutUserCA(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
-	data io.Reader,
-) error {
-	s := bufio.NewScanner(data)
-	req := &ShellyPutUserCARequest{}
-	for s.Scan() {
-		req.Data = StrPtr(s.Text() + "\n")
-		if _, _, err := req.Do(ctx, c, credsCallback); err != nil {
-			return err
-		}
-		req.Append = true
-	}
-	if err := s.Err(); err != nil {
-		return fmt.Errorf("reading input data for Shelly.PutUserCA: %w", err)
-	}
-	return nil
-}
+// func ShellyPutUserCA(
+// 	ctx context.Context,
+// 	c mgrpc.MgRPC,
+// 	credsCallback mgrpc.GetCredsCallback,
+// 	data io.Reader,
+// ) error {
+// 	s := bufio.NewScanner(data)
+// 	req := &ShellyPutUserCARequest{}
+// 	for s.Scan() {
+// 		req.Data = StrPtr(s.Text() + "\n")
+// 		if _, _, err := req.Do(ctx, c, credsCallback); err != nil {
+// 			return err
+// 		}
+// 		req.Append = true
+// 	}
+// 	if err := s.Err(); err != nil {
+// 		return fmt.Errorf("reading input data for Shelly.PutUserCA: %w", err)
+// 	}
+// 	return nil
+// }
 
 type ShellyPutTLSClientCertRequest struct {
 	// Data contents of the PEM file (null if you want to delete the existing data). (Required)
@@ -592,42 +574,41 @@ func (r *ShellyPutTLSClientCertRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyPutTLSClientCertRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyPutTLSClientCertRequest) DoResty(
+	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
+// TODO Not supported yet
 // ShellyPutTLSClientCert is a helper method which uploads the provided data to the
 // Shelly.PutTLSClientCert method, line-by-line to accomodate limits on payload size.
-func ShellyPutTLSClientCert(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
-	data io.Reader,
-) error {
-	s := bufio.NewScanner(data)
-	req := &ShellyPutTLSClientCertRequest{}
-	for s.Scan() {
-		req.Data = StrPtr(s.Text() + "\n")
-		if _, _, err := req.Do(ctx, c, credsCallback); err != nil {
-			return err
-		}
-		req.Append = true
-	}
-	if err := s.Err(); err != nil {
-		return fmt.Errorf("reading input data for Shelly.TLSClientCert: %w", err)
-	}
-	return nil
-}
+// func ShellyPutTLSClientCert(
+// 	ctx context.Context,
+// 	c mgrpc.MgRPC,
+// 	credsCallback mgrpc.GetCredsCallback,
+// 	data io.Reader,
+// ) error {
+// 	s := bufio.NewScanner(data)
+// 	req := &ShellyPutTLSClientCertRequest{}
+// 	for s.Scan() {
+// 		req.Data = StrPtr(s.Text() + "\n")
+// 		if _, _, err := req.Do(ctx, c, credsCallback); err != nil {
+// 			return err
+// 		}
+// 		req.Append = true
+// 	}
+// 	if err := s.Err(); err != nil {
+// 		return fmt.Errorf("reading input data for Shelly.TLSClientCert: %w", err)
+// 	}
+// 	return nil
+// }
 
 type ShellyPutTLSClientKeyRequest struct {
 	// Contents of the PEM file (null if you want to delete the existing data). (Required)
@@ -649,42 +630,41 @@ func (r *ShellyPutTLSClientKeyRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyPutTLSClientKeyRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyPutTLSClientKeyRequest) DoResty(
+	client *resty.Client,
 ) (
 	*RPCEmptyResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
+//TODO Not supported yet
 // ShellyPutTLSClientKey is a helper method which uploads the provided data to the
 // Shelly.PutTLSClientKey method, line-by-line to accomodate limits on payload size.
-func ShellyPutTLSClientKey(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
-	data io.Reader,
-) error {
-	s := bufio.NewScanner(data)
-	req := &ShellyPutTLSClientKeyRequest{}
-	for s.Scan() {
-		req.Data = StrPtr(s.Text() + "\n")
-		if _, _, err := req.Do(ctx, c, credsCallback); err != nil {
-			return err
-		}
-		req.Append = true
-	}
-	if err := s.Err(); err != nil {
-		return fmt.Errorf("reading input data for Shelly.PutTLSClientKey: %w", err)
-	}
-	return nil
-}
+// func ShellyPutTLSClientKey(
+// 	ctx context.Context,
+// 	c mgrpc.MgRPC,
+// 	credsCallback mgrpc.GetCredsCallback,
+// 	data io.Reader,
+// ) error {
+// 	s := bufio.NewScanner(data)
+// 	req := &ShellyPutTLSClientKeyRequest{}
+// 	for s.Scan() {
+// 		req.Data = StrPtr(s.Text() + "\n")
+// 		if _, _, err := req.Do(ctx, c, credsCallback); err != nil {
+// 			return err
+// 		}
+// 		req.Append = true
+// 	}
+// 	if err := s.Err(); err != nil {
+// 		return fmt.Errorf("reading input data for Shelly.PutTLSClientKey: %w", err)
+// 	}
+// 	return nil
+// }
 
 type ShellyGetConfigResponse struct {
 	System *SysConfig `json:"sys,omitempty"`
@@ -865,17 +845,15 @@ func (r *ShellyGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ShellyGetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -898,17 +876,15 @@ func (r *ShellyListMethodsRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyListMethodsRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyListMethodsRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ShellyListMethodsResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -938,17 +914,15 @@ func (r *ShellyListProfilesRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyListProfilesRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyListProfilesRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ShellyListProfilesResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -975,17 +949,15 @@ func (r *ShellySetProfileRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellySetProfileRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellySetProfileRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ShellySetProfileResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -1008,17 +980,15 @@ func (r *ShellyListTimezonesRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyListTimezonesRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyListTimezonesRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ShellyListTimezonesResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -1047,17 +1017,15 @@ func (r *ShellyDetectLocationRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyDetectLocationRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyDetectLocationRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ShellyDetectLocationResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -1113,40 +1081,39 @@ func (r *ShellyGetComponentsRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *ShellyGetComponentsRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *ShellyGetComponentsRequest) DoResty(
+	client *resty.Client,
 ) (
 	*ShellyGetComponentsResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
-func (r *ShellyGetComponentsRequest) DoAll(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
-) (
-	*ShellyGetComponentsResponse,
-	error,
-) {
-	total := 1
-	composed := r.NewTypedResponse()
-	for have := 0; have < total; {
-		resp := r.NewTypedResponse()
-		_, err := Do(ctx, c, credsCallback, r, resp)
-		if err != nil {
-			return nil, err
-		}
-		composed.Components = append(composed.Components, resp.Components...)
-		total = resp.Total
-		have += len(resp.Components)
-		composed.CfgRev = resp.CfgRev
-	}
-	return composed, nil
-}
+//TODO Not supported yet
+// func (r *ShellyGetComponentsRequest) DoAll(
+// 	ctx context.Context,
+// 	c mgrpc.MgRPC,
+// 	credsCallback mgrpc.GetCredsCallback,
+// ) (
+// 	*ShellyGetComponentsResponse,
+// 	error,
+// ) {
+// 	total := 1
+// 	composed := r.NewTypedResponse()
+// 	for have := 0; have < total; {
+// 		resp := r.NewTypedResponse()
+// 		_, err := DoResty(client, r, resp)
+// 		if err != nil {
+// 			return nil, err
+// 		}
+// 		composed.Components = append(composed.Components, resp.Components...)
+// 		total = resp.Total
+// 		have += len(resp.Components)
+// 		composed.CfgRev = resp.CfgRev
+// 	}
+// 	return composed, nil
+// }

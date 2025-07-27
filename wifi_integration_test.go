@@ -3,7 +3,7 @@ package shelly_test
 import (
 	"testing"
 
-	"github.com/jcodybaker/go-shelly"
+	"github.com/DonRobo/go-shelly-lite"
 )
 
 func TestWifiGetConfig(t *testing.T) {

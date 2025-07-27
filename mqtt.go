@@ -1,12 +1,10 @@
 package shelly
 
 import (
-	"context"
 	"errors"
 	"strings"
 
-	"github.com/mongoose-os/mos/common/mgrpc"
-	"github.com/mongoose-os/mos/common/mgrpc/frame"
+	"resty.dev/v3"
 )
 
 type MQTTSetConfigRequest struct {
@@ -25,17 +23,15 @@ func (r *MQTTSetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *MQTTSetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *MQTTSetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*SetConfigResponse,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -55,17 +51,15 @@ func (r *MQTTGetConfigRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *MQTTGetConfigRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *MQTTGetConfigRequest) DoResty(
+	client *resty.Client,
 ) (
 	*MQTTConfig,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
@@ -172,17 +166,15 @@ func (r *MQTTGetStatusRequest) NewResponse() any {
 	return r.NewTypedResponse()
 }
 
-func (r *MQTTGetStatusRequest) Do(
-	ctx context.Context,
-	c mgrpc.MgRPC,
-	credsCallback mgrpc.GetCredsCallback,
+func (r *MQTTGetStatusRequest) DoResty(
+	client *resty.Client,
 ) (
 	*MQTTStatus,
-	*frame.Response,
+	*Frame,
 	error,
 ) {
 	resp := r.NewTypedResponse()
-	raw, err := Do(ctx, c, credsCallback, r, resp)
+	raw, err := DoResty(client, r, resp)
 	return resp, raw, err
 }
 
