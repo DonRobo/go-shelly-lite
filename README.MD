@@ -1,12 +1,11 @@
-# go-shelly
-*TODO: Adapt the readme*
-go-shelly is an unofficial native go client for the [Shelly Gen2 API](https://shelly-api-docs.shelly.cloud/gen2/). It compliments the [MongooseOS mgrpc library](https://pkg.go.dev/github.com/mongoose-os/mos/common/mgrpc).
+# go-shelly-lite
+go-shelly is an unofficial native go client for the [Shelly Gen2 API](https://shelly-api-docs.shelly.cloud/gen2/). It's forked from jcodybaker's excellent [go-shelly](https://github.com/jcodybaker/go-shelly) library. However with the dependency to [mos](github.com/mongoose-os/mos/) completely removed. As many of its transitive dependencies were causing issues for me.
 
 ## Maturity
-This library is currently in active development (as of December 2024). It has meaningful gaps in testing and functionality. At this stage there is no guarantee of backwards compatibility. Once the project reaches a stable state, I will begin crafting releases with semantic versioning. 
+This library is mostly for my own personal amusement and no guarantees or promises about stability, functionality, documentation or test coverage are made.
 
 ## Usage
-In most cases, using the library is as simple building an RPC channel and calling .Do().  See the [go doc](https://pkg.go.dev/github.com/DonRobo/go-shelly-lite) and [Shelly Gen2 API documentation](https://shelly-api-docs.shelly.cloud/gen2/).
+In most cases, using the library is as simple building an Resty client and calling .DoResty().  See the [go doc](https://pkg.go.dev/github.com/DonRobo/go-shelly-lite), the [Resty doc](https://resty.dev/) and [Shelly Gen2 API documentation](https://shelly-api-docs.shelly.cloud/gen2/).
 ```
 import (
 	"context"
@@ -17,20 +16,17 @@ import (
 )
 
 const (
-    rpcAddr = "http://192.168.1.20/rpc"
+    shellyAddress = "http://192.168.1.20"
 )
 
-//TODO adapt this
 func main() {
-    ctx := context.Background()
-	c, err := mgrpc.New(ctx, rpcAddr, mgrpc.UseHTTPPost())
-	if err != nil {
-		log.Fatalf("establishing rpc channel: %v", err)
-	}
-	defer c.Disconnect(ctx)
+	client := resty.New()
+	client.SetBaseURL(shellyAddress)
+	defer client.Close()
 
-    req := &shelly.ShellyGetStatusRequest{}
-    statusResp, _, err := req.Do(ctx, c)
+	req := &shelly.ShellyGetStatusRequest{}
+	statusResp, _, err := req.DoResty(client)
+
     if err != nil {
         log.Fatalf("querying device status: %v", err)
     }
@@ -40,28 +36,9 @@ func main() {
 }
 ```
 
-## TODO
-* More rigorous integration testing. Currently I have a Shelly Pro 4PM, Shelly Pro 3, Shelly Plug US, and Shelly Plus HT. All are controlling live workloads and thus I've been reluctant to test mutating actions outside the needs of my own projects.
-* MQTT / WebSocket examples.
-* mDNS / BLE integrations for discovery and bootstrapping.  Open question: Should these be in separate projects to avoid dependency bloat?
-* Stabilize API
-    * It's not always clear which Go types should be used for JSON Numeric values. More validation is needed to ensure these types are correctly defined.
-    * In contrast to Golang, the Shelly API appears differentiate between no-value and `null`. For example, in some cases (ex. Wifi.SetConfig), a JSON key with `null` value will clear the existing configuration, while omitting the key/value entirely leaves it untouched.
-* Complete API
-    * Known missing: Scripts, Outbound WebSockets, ModBus, Voltmeters, Smoke, EM(data), EM1(data), PM1, UI.
-    * Wrappers for easy software updates, and configuration of multi-line scripts and certificates.
-* CI testing / dependabot / release pipeline.
-
-## Contributing
-Pull-requests and [issues](https://github.com/DonRobo/go-shelly-lite/issues) are welcome. Code should be formatted with gofmt, pass existing tests, and ideally add new testing. Test should include samples from live device request/response flows when possible.
-
 ## Legal
 
-### Intellectual Property
-This library and its authors (Cody Baker - cody@codybaker.com) have no affiliation with [Allterco Robotics](https://allterco.com/) (the maker of [Shelly](https://www.shelly.com/) devices) or [Cesanta Software Limited](https://cesanta.com/) (the maker of [MongooseOS](https://mongoose-os.com/)).  All trademarks are property of their respective owners.  Importantly, the "[Shelly](https://www.shelly.com/)" name and names of devices are trademarks of [Allterco Robotics](https://allterco.com/). [MongooseOS](https://mongoose-os.com/) and related trademarks are property of [Cesanta Software Limited](https://cesanta.com/).
-
-### Liability
-By downloading/using this open-source library you indemnify the authors of this project ([J Cody Baker](cody@codybaker.com)) from liability to the fullest extent permitted by law. There are real risks of fire, electricution, and/or bodily injury/death with these devices and connected equipment. Errors, bugs, or misinformation may exist in this software which cause your device and attached equipment to function in unexpected and dangerous ways. That risk is your responsibility. 
-
-### License 
-Copyright 2024 [J Cody Baker](cody@codybaker.com) and licensed under the [MIT license](LICENSE.md).
+### License
+This fork contains modifications by [DonRobo](https://github.com/DonRobo), based on the original work by J Cody Baker.  
+Original copyright [J Cody Baker](cody@codybaker.com)  
+Licensed under the [MIT license](LICENSE.md).
